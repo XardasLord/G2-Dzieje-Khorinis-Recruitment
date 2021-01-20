@@ -1,13 +1,18 @@
 version: '3.4'
 
 services:
-  g2.dk.api:
+  api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-    ports:
-      - "80"
-      - "443"
+      - ConnectionStrings__LibraryConnectionString=Server=db;Database=G2-DK-Recruitment;User=sa;Password=test$$123;
+      - JwtConfig__Secret=PDv7DrqznYL6nv7DrqzjnQYO9JxIsWdcjnQYL6nu0f
+      - JwtConfig__ExpirationInMinutes=60
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  db:
+    environment:
+      SA_PASSWORD: "test$$123"
+      ACCEPT_EULA: "Y"

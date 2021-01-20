@@ -1,25 +1,26 @@
 version: '3.4'
 
 services:
-  g2-dk-api:
+  api:
     image: ${DOCKER_REGISTRY-}g2dkapi
     container_name: g2-dk-api
+    restart: always
     build:
       context: .
       dockerfile: src/G2.DK.Api/Dockerfile
     ports:
-      - "5000:443"
-    depends_on:
-      - db
+      - "5000:80"
+      - "5001:443"
     networks:
       - backtier
 
-  g2-dk-client:
+  client:
     image: ${DOCKER_REGISTRY-}g2dkclient
     container_name: g2-dk-client
+    restart: always
     build:
-      context: .
-      dockerfile: src/G2-DK-Client/Dockerfile
+      context: ./src/G2-DK-Client
+      dockerfile: Dockerfile
     ports:
       - "4200:80"
     networks:
@@ -27,8 +28,22 @@ services:
 
   db:
     image: "mcr.microsoft.com/mssql/server"
+    container_name: g2-dk-mssql
+    restart: always
     ports:
       - "1433:1433"
+    networks:
+      - backtier
+
+  nginx:
+    image: ${DOCKER_REGISTRY-}nginx
+    container_name: g2-dk-nginx
+    restart: always
+    build:
+      context: ./src/G2-DK-Nginx
+      dockerfile: Dockerfile
+    ports:
+      - "81:80"
     networks:
       - backtier
   

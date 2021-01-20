@@ -1,0 +1,19 @@
+<form [formGroup]="addCharacterForm" (ngSubmit)="onSubmit()">
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Add new character</h4>
+		<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<div class="form-group">
+			<input class="form-control" placeholder="Name" formControlName="name" />
+		</div>
+		<div class="form-group">
+			<input class="form-control" placeholder="Description" formControlName="description" />
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="submit" class="btn btn-success" [disabled]="addCharacterForm.invalid">Add</button>
+	</div>
+</form>

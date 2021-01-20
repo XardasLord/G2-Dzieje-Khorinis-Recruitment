@@ -26,6 +26,7 @@ export class CharactersListComponent implements OnInit {
 			this.charactersService.addCharacter(result).subscribe(() => {
 				setTimeout(() => (this.closedSuccessAlert = false), 1);
 				setTimeout(() => (this.closedSuccessAlert = true), 5000);
+				this.characters$ = this.charactersService.getCharacters();
 			});
 		});
 	}

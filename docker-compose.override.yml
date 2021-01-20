@@ -5,7 +5,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ConnectionStrings__LibraryConnectionString=Server=db;Database=G2-DK-Recruitment;User=sa;Password=test$$123;
+      - ConnectionStrings__G2ConnectionString=Server=db;Database=G2-DK-Recruitment;User=sa;Password=test$$123;
       - JwtConfig__Secret=PDv7DrqznYL6nv7DrqzjnQYO9JxIsWdcjnQYL6nu0f
       - JwtConfig__ExpirationInMinutes=60
     volumes:

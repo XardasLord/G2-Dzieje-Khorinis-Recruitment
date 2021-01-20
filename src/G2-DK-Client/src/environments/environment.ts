@@ -4,7 +4,7 @@
 
 export const environment = {
 	production: false,
-	charactersApiEndpoint: 'http://localhost:5000/api/characters',
+	charactersApiEndpoint: 'http://localhost:81/api/characters',
 };
 
 /*

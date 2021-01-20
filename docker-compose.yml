@@ -1,0 +1,37 @@
+version: '3.4'
+
+services:
+  g2-dk-api:
+    image: ${DOCKER_REGISTRY-}g2dkapi
+    container_name: g2-dk-api
+    build:
+      context: .
+      dockerfile: src/G2.DK.Api/Dockerfile
+    ports:
+      - "5000:443"
+    depends_on:
+      - db
+    networks:
+      - backtier
+
+  g2-dk-client:
+    image: ${DOCKER_REGISTRY-}g2dkclient
+    container_name: g2-dk-client
+    build:
+      context: .
+      dockerfile: src/G2-DK-Client/Dockerfile
+    ports:
+      - "4200:80"
+    networks:
+      - backtier
+
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    ports:
+      - "1433:1433"
+    networks:
+      - backtier
+  
+networks:
+  backtier:
+    driver: bridge

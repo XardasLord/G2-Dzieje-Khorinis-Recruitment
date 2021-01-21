@@ -1,4 +1,5 @@
 ﻿using G2.DK.Domain.Aggregates.Character;
+using G2.DK.Domain.Aggregates.User;
 using G2.DK.Infrastructure.Persistence.DbContexts;
 using G2.DK.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ namespace G2.DK.Infrastructure.Persistence
                     options.EnableDetailedErrors();
                     options.UseSqlServer(configuration.GetConnectionString(ConnectionStringConfigName));
                 })
-                .AddScoped<ICharacterRepository, CharacterRepository>();
+                .AddScoped<ICharacterRepository, CharacterRepository>()
+                .AddScoped<IUserRepository, UserRepository>();
     }
 }

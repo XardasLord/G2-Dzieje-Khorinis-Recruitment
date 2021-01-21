@@ -1,12 +1,14 @@
 ﻿using System.Threading.Tasks;
 using G2.DK.Application.UseCases.Characters;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace G2.DK.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class CharactersController : ControllerBase
     {
         private readonly IMediator _mediator;

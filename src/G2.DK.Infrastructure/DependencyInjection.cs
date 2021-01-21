@@ -1,4 +1,5 @@
 ﻿using G2.DK.Infrastructure.Authorization;
+using G2.DK.Infrastructure.ErrorHandling;
 using G2.DK.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -16,9 +17,8 @@ namespace G2.DK.Infrastructure
 
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app, IConfiguration configuration)
             => app
-                //.UseHttpsRedirection()
                 .UseRouting()
-                //.UseMiddleware<ErrorHandlingMiddleware>()
+                .UseMiddleware<ErrorHandlingMiddleware>()
                 .UseTokenAuthentication()
                 .UseTokenAuthorization();
     }

@@ -3,14 +3,16 @@ using G2.DK.Infrastructure.Persistence.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace G2.DK.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(G2DbContext))]
-    partial class G2DbContextModelSnapshot : ModelSnapshot
+    [Migration("20210120220111_SeedAdminUserData")]
+    partial class SeedAdminUserData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

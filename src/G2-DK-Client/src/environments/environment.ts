@@ -4,6 +4,8 @@
 
 export const environment = {
 	production: false,
+	apiUrl: 'http://localhost:81/api',
+	authApiEndpoint: 'http://localhost:81/api/auth',
 	charactersApiEndpoint: 'http://localhost:81/api/characters',
 };
 

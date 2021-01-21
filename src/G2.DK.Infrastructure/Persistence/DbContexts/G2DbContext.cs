@@ -12,7 +12,7 @@ namespace G2.DK.Infrastructure.Persistence.DbContexts
         public DbSet<Character> Characters { get; set; }
         public DbSet<User> Users { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder) 
             => modelBuilder
                 .ApplyConfiguration(new CharacterConfiguration())
                 .ApplyConfiguration(new UserConfiguration());

@@ -19,7 +19,7 @@ namespace G2.DK.Infrastructure.Authorization
             _expDate = config.GetSection("JwtConfig").GetSection("ExpirationInMinutes").Value;
         }
 
-        public string GenerateSecurityToken(long userId, string email, string name)
+        public string GenerateSecurityToken(long userId, string login)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_secret);
@@ -28,8 +28,7 @@ namespace G2.DK.Infrastructure.Authorization
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim(ClaimTypes.Sid, userId.ToString()),
-                    new Claim(ClaimTypes.Email, email),
-                    new Claim(ClaimTypes.Name, name)
+                    new Claim(ClaimTypes.Name, login),
                 }),
                 Audience = "localhost",
                 Issuer = "localhost",

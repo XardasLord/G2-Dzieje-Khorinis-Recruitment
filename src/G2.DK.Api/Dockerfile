@@ -10,7 +10,7 @@ WORKDIR /src
 COPY ["src/G2.DK.Api/G2.DK.Api.csproj", "src/G2.DK.Api/"]
 RUN dotnet restore "src/G2.DK.Api/G2.DK.Api.csproj"
 COPY . .
-WORKDIR "/src/G2.DK.Api"
+WORKDIR "/src/src/G2.DK.Api"
 RUN dotnet build "G2.DK.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish

@@ -1,15 +1,11 @@
-FROM node:14.2.0-alpine3.11 as build
+FROM node:alpine AS builder
 WORKDIR /app
 
-RUN npm install -g @angular/cli
-
-COPY ./package.json .
-RUN npm install
 COPY . .
-RUN ng build
+RUN npm install
+RUN npm run build
 
-FROM nginx as runtime
-RUN rm -rf /usr/share/nginx/html/*
+FROM nginx:alpine
 COPY ./default.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /app/dist/G2-DK-Client /usr/share/nginx/html
-RUN chown nginx:nginx /usr/share/nginx/html/*
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=builder /app/dist/G2-DK-Client/ /usr/share/nginx/html

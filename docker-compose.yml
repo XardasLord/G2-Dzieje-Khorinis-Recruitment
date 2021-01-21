@@ -11,6 +11,8 @@ services:
     ports:
       - "5000:80"
       - "5001:443"
+    depends_on:
+      - db
     networks:
       - backtier
 
@@ -32,6 +34,9 @@ services:
     restart: always
     ports:
       - "1433:1433"
+    environment:
+      SA_PASSWORD: "test$$123"
+      ACCEPT_EULA: "Y"
     networks:
       - backtier
 
@@ -44,6 +49,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "81:80"
+    depends_on:
+      - api
+      - client
     networks:
       - backtier
   

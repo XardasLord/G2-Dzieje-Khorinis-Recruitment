@@ -1,0 +1,25 @@
+<div class="row mt-2">
+	<div class="alert alert-success w-100" role="alert" *ngIf="!closedSuccessAlert">Character has been added.</div>
+</div>
+
+<div class="row">
+	<h1>List of characters</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Name</th>
+				<th scope="col">Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let character of (characters$ | async)!">
+				<th scope="row">{{ character.id }}</th>
+				<td>{{ character.name }}</td>
+				<td>{{ character.description }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<button class="btn btn-success" (click)="addCharacter()">Add new character</button>
